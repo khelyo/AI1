@@ -23,8 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Handle the root path
 app.get('/', async (req, res) => {
   try {
-    // Retrieve the prompt from query parameters
-    const prompt = req.query.prompt || 'who are you'; // Default prompt if none provided
+    // Retrieve the prompt from the 'p' query parameter
+    const prompt = req.query.p || 'who are you'; // Default prompt if none provided
 
     const result = await model.generateContent(prompt);
     const storyText = await result.response.text();
@@ -38,7 +38,7 @@ app.get('/', async (req, res) => {
           <title>Story Generator</title>
       </head>
       <body>
-          <pre id="story-output">${JSON.stringify({ result: storyText, developer: "Chael" }, null, 2)}</pre>
+          <pre id="story-output">${JSON.stringify({ result: storyText, developed: "Chael" }, null, 2)}</pre>
       </body>
       </html>
     `);
