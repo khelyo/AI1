@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', async (req, res) => {
   try {
     // Retrieve the prompt from the 'p' query parameter
-    const prompt = req.query.p || 'who are you'; // Default prompt if none provided
+    const prompt = req.query.p || 'hi'; // Default prompt if none provided
 
     const result = await model.generateContent(prompt);
     const storyText = await result.response.text();
@@ -35,10 +35,10 @@ app.get('/', async (req, res) => {
       <head>
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Story Generator</title>
+          <title>Gemini API [Chael]</title>
       </head>
       <body>
-          <pre id="story-output">${JSON.stringify({ result: storyText, developed: "Chael" }, null, 2)}</pre>
+          <pre id="story-output">${JSON.stringify({ result: storyText, developer_by: "Chael" }, null, 2)}</pre>
       </body>
       </html>
     `);
